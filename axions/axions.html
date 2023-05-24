@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.0/axios.min.js"></script>
+</head>
+
+<body>
+    <button>GET</button>
+    <button>POST</button>
+    <button>AJAX</button>
+    <script>
+        const btns = document.querySelectorAll('button');
+        // 配置 baseurl
+        axios.defaults.baseURL = 'http://127.0.0.1:8000';
+
+        btns[0].onclick = function () {
+            // get 请求
+            axios.get('/axios-server', {
+                params: {
+                    id: 100,
+                    vip: 7
+                },
+                // 请求头信息
+                headers: {
+                    name: 'GG',
+                    age: 20
+                }
+            }).then(value => {
+                console.log(value);
+            });
+        }
+
+        btns[1].onclick = function () {
+            axios.post('/axios-server', {
+                username: 'anio',
+                password: 'anio567'
+            }, {
+                params: {
+                    id: 200,
+                    vip: 10
+                },
+                headers: {
+                    height: 180,
+                    weight: 180
+                },
+            })
+        }
+
+        btns[2].onclick = function () {
+            axios({
+                // 请求方法
+                method: 'POST',
+                // url
+                url: '/axios-server',
+                // url参数
+                params: {
+                    vip: 10,
+                    leave: 30
+                },
+                // 头信息
+                headers: {
+                    a: 100,
+                    b: 200
+                },
+                // 请求体
+                data: {
+                    username: 'anim',
+                    password: 'anim'
+                }
+            }).then(abc => {
+                console.log(abc);
+                // 响应状态码
+                console.log(abc.status);
+                // 响应状态字符串
+                console.log(abc.statusText);
+                // 响应头信息
+                console.log(abc.headers);
+                // 响应体
+                console.log(abc.data);
+            })
+        }
+    </script>
+</body>
+
+</html>

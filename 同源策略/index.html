@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TYCL</title>
+</head>
+
+<body>
+    <h1>我要飞上天</h1>
+    <button>获取</button>
+    <script>
+        const btn = document.querySelector('button');
+        // const btn = document.getElementsByTagName('button');
+        btn.onclick = function () {
+            const x = new XMLHttpRequest();
+            x.open('GET', '/data');
+            x.send();
+            x.onreadystatechange = function () {
+                if (x.readyState === 4) {
+                    if (x.status >= 200 && x.readyState < 300) {
+                        console.log(x.response);
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
